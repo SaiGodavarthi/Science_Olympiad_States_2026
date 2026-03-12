@@ -259,7 +259,7 @@ const statesRoster = {
   "Himaghna": ["Boomilever", "Circuit Lab", "Disease Detectives", "Dynamic Planet"],
   "Shiven":   ["Boomilever", "Disease Detectives", "Experimental Design", "Machines"],
   "Sai":      ["Bungee Drop", "Electric Vehicle", "Engineering CAD", "Experimental Design", "Robot Tour"],
-  "Anu":      ["Bungee Drop", "Electric Vehicle", "Entomology", "Experimental Design"],
+  "Anu":      ["Bungee Drop", "Electric Vehicle", "Entomology"],
   "Sharvesh": ["Circuit Lab", "Codebusters", "Machines"],
   "Gayathri": ["Codebusters", "Engineering CAD", "Rocks & Minerals"],
   "Sudeepa":  ["Designer Genes", "Experimental Design", "Remote Sensing"],
