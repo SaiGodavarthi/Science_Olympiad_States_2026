@@ -1,176 +1,170 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cumberland Science Olympiad — Strategy Dashboard</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="styles.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cumberland Science Olympiad — Strategy Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-<!-- HERO -->
-
-<div class="hero">
-  <div class="container">
-    <div class="hero-eyebrow">Science Olympiad · States 2025 · Strategy Report</div>
-    <div class="hero-title">CUMBER<span>LAND</span><br>STATES</div>
-    <div class="hero-sub">A data-driven breakdown of our current placement trajectory from Brown Invitational, and how strategic optimization transforms our competitive position heading into States.</div>
-
-```
-<div class="hero-pills">
-  <div class="pill pill-gold">Cumberland</div>
-  <div class="pill pill-red">Barrington</div>
-  <div class="pill pill-blue">Wheeler</div>
-</div>
-```
-
-  </div>
-</div>
-
-<!-- SECTION 1 -->
-
-<div class="section">
-  <div class="container">
-
-```
-<div class="section-header reveal">
-  <div class="section-num">01</div>
-  <div class="section-title">Brown Invitational Results</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="score-grid reveal">
-  <!-- cards unchanged -->
-</div>
-
-<div class="chart-wrap reveal">
-  <div class="chart-title"><span>Brown Invitational</span> — Placement per Event (lower = better)</div>
-  <div class="bar-chart" id="brownchart"></div>
-
-  <div class="chart-legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Cumberland</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Barrington</div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Wheeler</div>
-  </div>
-</div>
-```
-
-  </div>
-</div>
-
-<!-- SECTION 2 -->
-
-<div class="section">
-  <div class="container">
-
-```
-<div class="section-header reveal">
-  <div class="section-num">02</div>
-  <div class="section-title">The Optimization Model</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="transform-grid reveal">
-
-  <div>
-    <div class="rank-table-title current">⚠ Current (Unoptimal) Rankings</div>
-    <table class="rank-table" id="currentTable"></table>
+  <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+  <div class="hero">
+    <div class="container">
+      <div class="hero-eyebrow">Science Olympiad · States 2025 · Strategy Report</div>
+      <div class="hero-title">CUMBER<span>LAND</span><br>STATES</div>
+      <div class="hero-sub">A data-driven breakdown of our current placement trajectory from Brown Invitational, and how strategic optimization transforms our competitive position heading into States.</div>
+      <div class="hero-pills">
+        <div class="pill pill-gold">Cumberland</div>
+        <div class="pill pill-red">Barrington</div>
+        <div class="pill pill-blue">Wheeler</div>
+      </div>
+    </div>
   </div>
 
-  <div class="transform-arrow">
-    <div class="arrow-line"></div>
-    <div class="arrow-head">▼</div>
-    <div class="arrow-label">Strategic Shift</div>
+  <!-- ═══════════════════════════════ SECTION 01: BROWN RESULTS ═══════════════════════════════ -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-num">01</div>
+        <div class="section-title">Brown Invitational Results</div>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="score-grid reveal">
+        <!-- Cumberland -->
+        <div class="score-card cumberland">
+          <div class="score-card-label">Team</div>
+          <div class="score-card-name">Cumberland</div>
+          <div class="score-row"><span class="score-row-label">Current Total Score</span><span class="score-val rank-1">54</span></div>
+          <div class="score-row"><span class="score-row-label">Projected Optimal</span><span class="score-val improved">31</span></div>
+          <div class="score-row"><span class="score-row-label">Worst Case</span><span class="score-val">37</span></div>
+          <div class="score-row"><span class="score-row-label">Potential Drop</span><span class="score-val improved">−23 pts</span></div>
+        </div>
+        <!-- Barrington -->
+        <div class="score-card barrington">
+          <div class="score-card-label">Rival</div>
+          <div class="score-card-name">Barrington</div>
+          <div class="score-row"><span class="score-row-label">Current Total Score</span><span class="score-val rank-1">37</span></div>
+          <div class="score-row"><span class="score-row-label">Projected Optimal</span><span class="score-val">46</span></div>
+          <div class="score-row"><span class="score-row-label">Their Events Won</span><span class="score-val">Bungee, EV, Heli...</span></div>
+          <div class="score-row"><span class="score-row-label">Threat Level</span><span class="score-val" style="color:var(--red)">High</span></div>
+        </div>
+        <!-- Wheeler -->
+        <div class="score-card wheeler">
+          <div class="score-card-label">Rival</div>
+          <div class="score-card-name">Wheeler</div>
+          <div class="score-row"><span class="score-row-label">Current Total Score</span><span class="score-val">47</span></div>
+          <div class="score-row"><span class="score-row-label">Projected Optimal</span><span class="score-val">61</span></div>
+          <div class="score-row"><span class="score-row-label">Their Events Won</span><span class="score-val">Circuit Lab...</span></div>
+          <div class="score-row"><span class="score-row-label">Threat Level</span><span class="score-val" style="color:var(--gold)">Medium</span></div>
+        </div>
+      </div>
+
+      <!-- Bar Chart -->
+      <div class="chart-wrap reveal">
+        <div class="chart-title"><span>Brown Invitational</span> — Placement per Event (lower = better)</div>
+        <div class="bar-chart" id="brownchart"></div>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div> Cumberland</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Barrington</div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Wheeler</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <div class="rank-table-title optimal">✦ Optimized Target Rankings</div>
-    <table class="rank-table" id="optimalTable"></table>
+  <!-- ═══════════════════════════════ SECTION 02: OPTIMIZATION MODEL ═══════════════════════════════ -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-num">02</div>
+        <div class="section-title">The Optimization Model</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="transform-grid reveal">
+        <div>
+          <div class="rank-table-title current">⚠ Current (Unoptimal) Rankings</div>
+          <table class="rank-table" id="currentTable"></table>
+        </div>
+        <div class="transform-arrow">
+          <div class="arrow-line"></div>
+          <div class="arrow-head">▼</div>
+          <div class="arrow-label">Strategic Shift</div>
+        </div>
+        <div>
+          <div class="rank-table-title optimal">✦ Optimized Target Rankings</div>
+          <table class="rank-table" id="optimalTable"></table>
+        </div>
+      </div>
+    </div>
   </div>
 
-</div>
-```
-
-  </div>
-</div>
-
-<!-- SECTION 3 -->
-
-<div class="section">
-  <div class="container">
-
-```
-<div class="section-header reveal">
-  <div class="section-num">03</div>
-  <div class="section-title">Score Scenarios</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="delta-section reveal">
-
-  <div class="delta-card">
-    <div class="delta-card-title"><span>Cumberland</span> — Score Scenarios</div>
-    <div class="gauge-wrap" id="cumbGauge"></div>
+  <!-- ═══════════════════════════════ SECTION 03: SCORE SCENARIOS ═══════════════════════════════ -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-num">03</div>
+        <div class="section-title">Score Scenarios</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="delta-section reveal">
+        <div class="delta-card">
+          <div class="delta-card-title"><span>Cumberland</span> — Score Scenarios</div>
+          <div class="gauge-wrap" id="cumbGauge"></div>
+        </div>
+        <div class="delta-card">
+          <div class="delta-card-title">Projected <span>Standings</span> at States</div>
+          <div class="gauge-wrap" id="statesGauge"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="delta-card">
-    <div class="delta-card-title">Projected <span>Standings</span> at States</div>
-    <div class="gauge-wrap" id="statesGauge"></div>
+  <!-- ═══════════════════════════════ SECTION 04: ROI EVENTS ═══════════════════════════════ -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-num">04</div>
+        <div class="section-title">Events by ROI Priority</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="roi-grid reveal" id="roiGrid"></div>
+    </div>
   </div>
 
-</div>
-```
-
+  <!-- ═══════════════════════════════ SECTION 05: STATES TEAM ROSTER ═══════════════════════════════ -->
+  <div class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-num">05</div>
+        <div class="section-title">States Team Roster</div>
+        <div class="section-line"></div>
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:32px;letter-spacing:0.5px;" class="reveal">
+        Quick-reference: every competitor and their assigned event(s) for States.
+      </div>
+      <div class="roster-grid reveal" id="rosterGrid"></div>
+    </div>
   </div>
-</div>
 
-<!-- SECTION 4 -->
-
-<div class="section">
-  <div class="container">
-
-```
-<div class="section-header reveal">
-  <div class="section-num">04</div>
-  <div class="section-title">Events by ROI Priority</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="roi-grid reveal" id="roiGrid"></div>
-```
-
+  <!-- ═══════════════════════════════ RATIONALE ═══════════════════════════════ -->
+  <div class="rationale">
+    <div class="container">
+      <div class="rationale-title reveal">Strategic Rationale</div>
+      <div class="rationale-body reveal">
+        <p>The proposed event distribution is designed to maximize our team's total score by focusing effort where it produces the greatest competitive gain. Using the Brown Invitational results as a baseline, we identified events where Cumberland can realistically move into first place with targeted preparation, rather than spending excessive time on events where other teams already have a large advantage.</p>
+        <p>This strategy prioritizes high return-on-investment (ROI) events — meaning events where small improvements in preparation or execution could shift placements significantly. Events like Circuit Lab, Hovercraft, and Machines show strong potential for Cumberland to move from mid placements to first with additional study or optimization.</p>
+        <p>The team assignments align competitors with events where they already demonstrate relative strength or relevant skills. This reduces the learning curve and allows members to deepen expertise instead of spreading preparation across unfamiliar topics.</p>
+        <p>Some events — such as Bungee Drop where Barrington placed first — would require disproportionate effort to surpass. The strategy secures solid placements there while investing preparation time where it will actually lower our overall team score. Overall, this gives Cumberland the strongest statistical path to victory.</p>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- SECTION 5 -->
+  <div class="footer">Cumberland Science Olympiad · States Strategy Dashboard · 2025</div>
 
-<div class="section">
-  <div class="container">
-
-```
-<div class="section-header reveal">
-  <div class="section-num">05</div>
-  <div class="section-title">States Team Roster</div>
-  <div class="section-line"></div>
-</div>
-
-<div class="roster-grid reveal" id="rosterGrid"></div>
-```
-
-  </div>
-</div>
-
-<div class="footer">
-Cumberland Science Olympiad · States Strategy Dashboard · 2025
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+

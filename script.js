@@ -1,4 +1,7 @@
-// ——— DATA ———
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+
 const brownData = [
   { event: "Anatomy & Physiology", cumb: 5,  barr: 23, whl: 18, max: 23 },
   { event: "Astronomy",            cumb: 5,  barr: 14, whl: 18, max: 18 },
@@ -51,6 +54,7 @@ const rankData = [
   { event: "Water Quality",        cur: [3,2,1], opt: [1,3,2] },
 ];
 
+// roi: "high" = High ROI, "med" = Medium ROI, "defend" = Defend Lead, "tough" = Tough Field
 const roiData = [
   { event: "Chemistry Lab",       members: "Saha, Brayden",               roi: "high",   cur: 2, opt: 1, brown: 17 },
   { event: "Codebusters",         members: "Brayden, Gayathri, Sharvesh", roi: "high",   cur: 3, opt: 1, brown: 25 },
@@ -77,26 +81,59 @@ const roiData = [
   { event: "Materials Science",   members: "—",                           roi: "tough",  cur: 3, opt: 2, brown: 58 },
 ];
 
-// ——— RENDER BAR CHART ———
+// States team: person -> list of events
+const statesRoster = {
+  "Saha":     ["Anatomy & Physiology", "Chemistry Lab", "Forensics"],
+  "Niru":     ["Anatomy & Physiology", "Designer Genes", "Remote Sensing"],
+  "Brayden":  ["Astronomy", "Chemistry Lab", "Codebusters", "Hovercraft"],
+  "Saanvi":   ["Astronomy", "Dynamic Planet"],
+  "Himaghna": ["Boomilever", "Circuit Lab", "Disease Detectives", "Dynamic Planet"],
+  "Shiven":   ["Boomilever", "Disease Detectives", "Experimental Design", "Machines"],
+  "Sai":      ["Bungee Drop", "Electric Vehicle", "Engineering CAD", "Experimental Design", "Robot Tour"],
+  "Anu":      ["Bungee Drop", "Electric Vehicle", "Entomology"],
+  "Sharvesh": ["Circuit Lab", "Codebusters", "Machines"],
+  "Gayathri": ["Codebusters", "Engineering CAD", "Rocks & Minerals"],
+  "Sudeepa":  ["Designer Genes", "Experimental Design", "Remote Sensing"],
+  "Rikin":    ["Entomology", "Helicopter", "Hovercraft"],
+  "Neha":     ["Forensics", "Rocks & Minerals"],
+  "Aahan":    ["Helicopter", "Water Quality"],
+  "Sathwika": ["Water Quality"],
+};
+
+
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+
+function eventROI(eventName) {
+  const found = roiData.find(r => r.event === eventName);
+  return found ? found.roi : 'med';
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// RENDER: BAR CHART (Section 01)
+// ═══════════════════════════════════════════════════════════
+
 function renderBrownChart() {
   const container = document.getElementById('brownchart');
   brownData.forEach(d => {
     const total = d.max || 60;
     const row = document.createElement('div');
     row.className = 'bar-row';
-    const shortEvent = d.event.length > 22 ? d.event.substring(0,20)+'…' : d.event;
+    const shortEvent = d.event.length > 22 ? d.event.substring(0, 20) + '…' : d.event;
     row.innerHTML = `
       <div class="bar-event" title="${d.event}">${shortEvent}</div>
       <div class="bar-track">
-        <div class="bar-seg cumb tooltip-trigger" style="width:0%" data-val="${d.cumb}" data-pct="${(d.cumb/total*100).toFixed(0)}">
+        <div class="bar-seg cumb tooltip-trigger" style="width:0%" data-val="${d.cumb}" data-pct="${(d.cumb / total * 100).toFixed(0)}">
           ${d.cumb <= 8 ? d.cumb : ''}
           <span class="tooltip">Cumberland: ${d.cumb}</span>
         </div>
-        <div class="bar-seg barr tooltip-trigger" style="width:0%" data-val="${d.barr}" data-pct="${(d.barr/total*100).toFixed(0)}">
+        <div class="bar-seg barr tooltip-trigger" style="width:0%" data-val="${d.barr}" data-pct="${(d.barr / total * 100).toFixed(0)}">
           ${d.barr <= 8 ? d.barr : ''}
           <span class="tooltip">Barrington: ${d.barr}</span>
         </div>
-        <div class="bar-seg whl tooltip-trigger" style="width:0%" data-val="${d.whl}" data-pct="${(d.whl/total*100).toFixed(0)}">
+        <div class="bar-seg whl tooltip-trigger" style="width:0%" data-val="${d.whl}" data-pct="${(d.whl / total * 100).toFixed(0)}">
           ${d.whl <= 8 ? d.whl : ''}
           <span class="tooltip">Wheeler: ${d.whl}</span>
         </div>
@@ -106,7 +143,6 @@ function renderBrownChart() {
     container.appendChild(row);
   });
 
-  // animate bars after a short delay
   setTimeout(() => {
     document.querySelectorAll('.bar-seg').forEach(seg => {
       seg.style.width = seg.dataset.pct + '%';
@@ -114,7 +150,11 @@ function renderBrownChart() {
   }, 400);
 }
 
-// ——— RENDER RANK TABLES ———
+
+// ═══════════════════════════════════════════════════════════
+// RENDER: RANK TABLES (Section 02)
+// ═══════════════════════════════════════════════════════════
+
 function renderRankTable(tableId, key) {
   const table = document.getElementById(tableId);
   const thead = document.createElement('thead');
@@ -122,19 +162,18 @@ function renderRankTable(tableId, key) {
   table.appendChild(thead);
   const tbody = document.createElement('tbody');
 
-  let totals = [0,0,0];
+  let totals = [0, 0, 0];
   rankData.forEach(d => {
     const vals = d[key];
-    totals = totals.map((t,i)=>t+vals[i]);
+    totals = totals.map((t, i) => t + vals[i]);
     const tr = document.createElement('tr');
-    const classFor = v => v===1?'rank-1':v===2?'rank-2':'rank-3';
+    const classFor = v => v === 1 ? 'rank-1' : v === 2 ? 'rank-2' : 'rank-3';
 
-    // highlight improved for optimal
     let classC = classFor(vals[0]);
     let classB = classFor(vals[1]);
     let classW = classFor(vals[2]);
-    if (key==='opt') {
-      const cur = rankData.find(r=>r.event===d.event).cur;
+    if (key === 'opt') {
+      const cur = rankData.find(r => r.event === d.event).cur;
       if (vals[0] < cur[0]) classC += ' improved';
       if (vals[1] < cur[1]) classB += ' improved';
       if (vals[2] < cur[2]) classW += ' improved';
@@ -153,7 +192,7 @@ function renderRankTable(tableId, key) {
   totalRow.className = 'rank-total';
   totalRow.innerHTML = `
     <td>TOTAL</td>
-    <td class="${key==='opt'?'improved':'rank-1'}">${totals[0]}</td>
+    <td class="${key === 'opt' ? 'improved' : 'rank-1'}">${totals[0]}</td>
     <td>${totals[1]}</td>
     <td>${totals[2]}</td>
   `;
@@ -161,19 +200,23 @@ function renderRankTable(tableId, key) {
   table.appendChild(tbody);
 }
 
-// ——— RENDER GAUGES ———
+
+// ═══════════════════════════════════════════════════════════
+// RENDER: GAUGES (Section 03)
+// ═══════════════════════════════════════════════════════════
+
 function renderGauges() {
+  const maxH = 140;
+
   // Cumberland scenarios
   const cumbScenarios = [
-    { label: 'Current', score: 54, color: 'var(--red)' },
-    { label: 'Worst\nCase', score: 37, color: 'var(--gold2)' },
-    { label: 'Optimal', score: 31, color: 'var(--green)' },
+    { label: 'Current',    score: 54, color: 'var(--red)'   },
+    { label: 'Worst Case', score: 37, color: 'var(--gold2)' },
+    { label: 'Optimal',    score: 31, color: 'var(--green)'  },
   ];
   const cumbWrap = document.getElementById('cumbGauge');
-  const maxH = 140;
-  const maxScore = 60;
   cumbScenarios.forEach(s => {
-    const h = Math.round((s.score / maxScore) * maxH);
+    const h = Math.round((s.score / 60) * maxH);
     const wrap = document.createElement('div');
     wrap.className = 'gauge-bar-wrap';
     wrap.innerHTML = `
@@ -181,24 +224,21 @@ function renderGauges() {
       <div class="gauge-bar" style="background:${s.color};height:0px;width:80px;min-height:20px">
         <span class="gauge-bar-label-top"></span>
       </div>
-      <div class="gauge-bar-label">${s.label.replace('\n','<br>')}</div>
+      <div class="gauge-bar-label">${s.label}</div>
     `;
     cumbWrap.appendChild(wrap);
-    setTimeout(() => {
-      wrap.querySelector('.gauge-bar').style.height = h + 'px';
-    }, 600);
+    setTimeout(() => { wrap.querySelector('.gauge-bar').style.height = h + 'px'; }, 600);
   });
 
-  // States projected
+  // States projected standings
   const statesData = [
-    { label: 'Cumberland\n(Optimal)', score: 31, color: 'var(--gold)' },
-    { label: 'Barrington\n(Projected)', score: 46, color: 'var(--red)' },
-    { label: 'Wheeler\n(Projected)', score: 61, color: 'var(--blue)' },
+    { label: 'Cumberland\n(Optimal)',    score: 31, color: 'var(--gold)' },
+    { label: 'Barrington\n(Projected)', score: 46, color: 'var(--red)'  },
+    { label: 'Wheeler\n(Projected)',    score: 61, color: 'var(--blue)' },
   ];
   const statesWrap = document.getElementById('statesGauge');
-  const maxS = 70;
   statesData.forEach(s => {
-    const h = Math.round((s.score / maxS) * maxH);
+    const h = Math.round((s.score / 70) * maxH);
     const wrap = document.createElement('div');
     wrap.className = 'gauge-bar-wrap';
     wrap.innerHTML = `
@@ -209,22 +249,38 @@ function renderGauges() {
       <div class="gauge-bar-label" style="white-space:pre-line;font-size:9px;line-height:1.4">${s.label}</div>
     `;
     statesWrap.appendChild(wrap);
-    setTimeout(() => {
-      wrap.querySelector('.gauge-bar').style.height = h + 'px';
-    }, 700);
+    setTimeout(() => { wrap.querySelector('.gauge-bar').style.height = h + 'px'; }, 700);
   });
 }
 
-// ——— RENDER ROI GRID ———
+
+// ═══════════════════════════════════════════════════════════
+// RENDER: ROI GRID (Section 04)
+// ═══════════════════════════════════════════════════════════
+
 function renderROI() {
   const grid = document.getElementById('roiGrid');
   roiData.forEach(d => {
-    const badgeClass = d.roi==='high' ? 'roi-high' : d.roi==='med' ? 'roi-med' : d.roi==='defend' ? 'roi-defend' : 'roi-tough';
-    const badgeLabel = d.roi==='high' ? 'High ROI' : d.roi==='med' ? 'Medium ROI' : d.roi==='defend' ? 'Defend Lead' : 'Tough Field';
+    const badgeClass = {
+      high:    'roi-high',
+      med:     'roi-med',
+      defend:  'roi-defend',
+      tough:   'roi-tough',
+    }[d.roi];
+    const badgeLabel = {
+      high:    'High ROI',
+      med:     'Medium ROI',
+      defend:  'Defend Lead',
+      tough:   'Tough Field',
+    }[d.roi];
+
     const card = document.createElement('div');
     card.className = 'roi-card';
-    const rankClass = r => r===1?'rank-1':r===2?'rank-2':'rank-3';
-    const improved = d.opt < d.cur ? `<span style="color:var(--green);font-size:10px;margin-left:4px">▲ up ${d.cur-d.opt}</span>` : '';
+    const rankClass = r => r === 1 ? 'rank-1' : r === 2 ? 'rank-2' : 'rank-3';
+    const improved = d.opt < d.cur
+      ? `<span style="color:var(--green);font-size:10px;margin-left:4px">▲ up ${d.cur - d.opt}</span>`
+      : '';
+
     card.innerHTML = `
       <div class="roi-card-header">
         <div class="roi-event-name">${d.event}${improved}</div>
@@ -250,30 +306,10 @@ function renderROI() {
   });
 }
 
-// ——— STATES TEAM ROSTER ———
-const statesRoster = {
-  "Saha":     ["Anatomy & Physiology", "Chemistry Lab", "Forensics"],
-  "Niru":     ["Anatomy & Physiology", "Designer Genes", "Remote Sensing"],
-  "Brayden":  ["Astronomy", "Chemistry Lab", "Codebusters", "Hovercraft"],
-  "Saanvi":   ["Astronomy", "Dynamic Planet"],
-  "Himaghna": ["Boomilever", "Circuit Lab", "Disease Detectives", "Dynamic Planet"],
-  "Shiven":   ["Boomilever", "Disease Detectives", "Experimental Design", "Machines"],
-  "Sai":      ["Bungee Drop", "Electric Vehicle", "Engineering CAD", "Experimental Design", "Robot Tour"],
-  "Anu":      ["Bungee Drop", "Electric Vehicle", "Entomology"],
-  "Sharvesh": ["Circuit Lab", "Codebusters", "Machines"],
-  "Gayathri": ["Codebusters", "Engineering CAD", "Rocks & Minerals"],
-  "Sudeepa":  ["Designer Genes", "Experimental Design", "Remote Sensing"],
-  "Rikin":    ["Entomology", "Helicopter", "Hovercraft"],
-  "Neha":     ["Forensics", "Rocks & Minerals"],
-  "Aahan":    ["Helicopter", "Water Quality"],
-  "Sathwika": ["Water Quality"],
-};
 
-// lookup roi for a given event
-function eventROI(eventName) {
-  const found = roiData.find(r => r.event === eventName);
-  return found ? found.roi : 'med';
-}
+// ═══════════════════════════════════════════════════════════
+// RENDER: ROSTER (Section 05)
+// ═══════════════════════════════════════════════════════════
 
 function renderRoster() {
   const grid = document.getElementById('rosterGrid');
@@ -292,16 +328,24 @@ function renderRoster() {
   });
 }
 
-// ——— INTERSECTION OBSERVER for reveal animations ———
+
+// ═══════════════════════════════════════════════════════════
+// SCROLL REVEAL
+// ═══════════════════════════════════════════════════════════
+
 function setupReveal() {
   const els = document.querySelectorAll('.reveal');
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
   els.forEach(el => obs.observe(el));
 }
 
-// ——— INIT ———
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+
 document.addEventListener('DOMContentLoaded', () => {
   renderBrownChart();
   renderRankTable('currentTable', 'cur');
@@ -311,3 +355,4 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRoster();
   setupReveal();
 });
+
