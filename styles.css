@@ -367,6 +367,8 @@
   .roi-high { background: rgba(62,207,112,0.15); color: var(--green); border: 1px solid rgba(62,207,112,0.3); }
   .roi-med { background: rgba(245,200,66,0.12); color: var(--gold); border: 1px solid rgba(245,200,66,0.25); }
   .roi-low { background: rgba(74,144,226,0.1); color: var(--blue); border: 1px solid rgba(74,144,226,0.2); }
+  .roi-defend { background: rgba(74,144,226,0.1); color: var(--blue); border: 1px solid rgba(74,144,226,0.2); }
+  .roi-tough { background: rgba(232,64,64,0.1); color: #e87070; border: 1px solid rgba(232,64,64,0.2); }
   .roi-card-members {
     font-size: 11px;
     color: var(--text2);
@@ -503,6 +505,51 @@
     z-index: 100;
     border-radius: 2px;
   }
+
+  /* ——— ROSTER ——— */
+  .roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 2px;
+  }
+  .roster-card {
+    background: var(--surface);
+    padding: 20px 22px;
+    transition: background 0.2s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .roster-card:hover { background: var(--surface2); }
+  .roster-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .roster-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .roster-events { display: flex; flex-direction: column; gap: 5px; }
+  .roster-event-tag {
+    font-size: 11px;
+    color: var(--text2);
+    padding: 4px 8px;
+    background: var(--surface2);
+    border-left: 2px solid var(--border);
+    letter-spacing: 0.3px;
+    line-height: 1.4;
+  }
+  .roster-event-tag.roi-high-tag { border-left-color: var(--green); }
+  .roster-event-tag.roi-med-tag  { border-left-color: var(--gold); }
+  .roster-event-tag.roi-defend-tag { border-left-color: var(--blue); }
+  .roster-event-tag.roi-tough-tag  { border-left-color: #e87070; }
 
   @media (max-width: 900px) {
     .score-grid { grid-template-columns: 1fr; }

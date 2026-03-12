@@ -52,29 +52,29 @@ const rankData = [
 ];
 
 const roiData = [
-  { event: "Chemistry Lab",       members: "Saha, Brayden",           roi: "high",   cur: 2, opt: 1, brown: 17 },
-  { event: "Codebusters",         members: "Brayden, Gayathri, Sharvesh", roi: "high", cur: 3, opt: 1, brown: 25 },
-  { event: "Entomology",          members: "Rikin, Anu",              roi: "high",   cur: 3, opt: 1, brown: 38 },
-  { event: "Forensics",           members: "Saha, Neha",              roi: "high",   cur: 3, opt: 1, brown: 20 },
-  { event: "Remote Sensing",      members: "Niru, Sudeepa",           roi: "high",   cur: 3, opt: 1, brown: 28 },
-  { event: "Robot Tour",          members: "Sai",                     roi: "high",   cur: 3, opt: 1, brown: 19 },
-  { event: "Rocks & Minerals",    members: "Gayathri, Neha",          roi: "high",   cur: 3, opt: 1, brown: 19 },
-  { event: "Water Quality",       members: "Sathwika, Aahan",         roi: "high",   cur: 3, opt: 1, brown: 23 },
-  { event: "Dynamic Planet",      members: "Himaghna, Saanvi",        roi: "med",    cur: 2, opt: 1, brown: 7  },
-  { event: "Electric Vehicle",    members: "Sai, Anu",                roi: "med",    cur: 2, opt: 1, brown: 5  },
-  { event: "Hovercraft",          members: "Rikin, Brayden",          roi: "med",    cur: 3, opt: 2, brown: 20 },
-  { event: "Machines",            members: "Shiven, Sharvesh",        roi: "med",    cur: 3, opt: 2, brown: 38 },
-  { event: "Experimental Design", members: "Sai, Sudeepa, Shiven",   roi: "med",    cur: 3, opt: 2, brown: 18 },
-  { event: "Anatomy & Physiology",members: "Saha, Niru",              roi: "low",    cur: 1, opt: 1, brown: 5  },
-  { event: "Astronomy",           members: "Brayden, Saanvi",         roi: "low",    cur: 1, opt: 1, brown: 5  },
-  { event: "Boomilever",          members: "Himaghna, Shiven",        roi: "low",    cur: 1, opt: 1, brown: 3  },
-  { event: "Designer Genes",      members: "Sudeepa & Niru",          roi: "low",    cur: 1, opt: 1, brown: 2  },
-  { event: "Disease Detectives",  members: "Himaghna, Shiven",        roi: "low",    cur: 1, opt: 1, brown: 1  },
-  { event: "Circuit Lab",         members: "Sharvesh, Himaghna",      roi: "low",    cur: 2, opt: 2, brown: 23 },
-  { event: "Engineering CAD",     members: "Sai, Gayathri",           roi: "low",    cur: 3, opt: 2, brown: 20 },
-  { event: "Helicopter",          members: "Rikin, Aahan",            roi: "low",    cur: 2, opt: 2, brown: 19 },
-  { event: "Bungee Drop",         members: "Sai, Anu",               roi: "low",    cur: 3, opt: 2, brown: 38 },
-  { event: "Materials Science",   members: "—",                       roi: "low",    cur: 3, opt: 2, brown: 58 },
+  { event: "Chemistry Lab",       members: "Saha, Brayden",               roi: "high",   cur: 2, opt: 1, brown: 17 },
+  { event: "Codebusters",         members: "Brayden, Gayathri, Sharvesh", roi: "high",   cur: 3, opt: 1, brown: 25 },
+  { event: "Entomology",          members: "Rikin, Anu",                  roi: "high",   cur: 3, opt: 1, brown: 38 },
+  { event: "Forensics",           members: "Saha, Neha",                  roi: "high",   cur: 3, opt: 1, brown: 20 },
+  { event: "Remote Sensing",      members: "Niru, Sudeepa",               roi: "high",   cur: 3, opt: 1, brown: 28 },
+  { event: "Robot Tour",          members: "Sai",                         roi: "high",   cur: 3, opt: 1, brown: 19 },
+  { event: "Rocks & Minerals",    members: "Gayathri, Neha",              roi: "high",   cur: 3, opt: 1, brown: 19 },
+  { event: "Water Quality",       members: "Sathwika, Aahan",             roi: "high",   cur: 3, opt: 1, brown: 23 },
+  { event: "Dynamic Planet",      members: "Himaghna, Saanvi",            roi: "med",    cur: 2, opt: 1, brown: 7  },
+  { event: "Electric Vehicle",    members: "Sai, Anu",                    roi: "med",    cur: 2, opt: 1, brown: 5  },
+  { event: "Hovercraft",          members: "Rikin, Brayden",              roi: "med",    cur: 3, opt: 2, brown: 20 },
+  { event: "Machines",            members: "Shiven, Sharvesh",            roi: "med",    cur: 3, opt: 2, brown: 38 },
+  { event: "Experimental Design", members: "Sai, Sudeepa, Shiven",        roi: "med",    cur: 3, opt: 2, brown: 18 },
+  { event: "Anatomy & Physiology",members: "Saha, Niru",                  roi: "defend", cur: 1, opt: 1, brown: 5  },
+  { event: "Astronomy",           members: "Brayden, Saanvi",             roi: "defend", cur: 1, opt: 1, brown: 5  },
+  { event: "Boomilever",          members: "Himaghna, Shiven",            roi: "defend", cur: 1, opt: 1, brown: 3  },
+  { event: "Designer Genes",      members: "Sudeepa & Niru",              roi: "defend", cur: 1, opt: 1, brown: 2  },
+  { event: "Disease Detectives",  members: "Himaghna, Shiven",            roi: "defend", cur: 1, opt: 1, brown: 1  },
+  { event: "Circuit Lab",         members: "Sharvesh, Himaghna",          roi: "tough",  cur: 2, opt: 2, brown: 23 },
+  { event: "Engineering CAD",     members: "Sai, Gayathri",               roi: "tough",  cur: 3, opt: 2, brown: 20 },
+  { event: "Helicopter",          members: "Rikin, Aahan",                roi: "tough",  cur: 2, opt: 2, brown: 19 },
+  { event: "Bungee Drop",         members: "Sai, Anu",                    roi: "tough",  cur: 3, opt: 2, brown: 38 },
+  { event: "Materials Science",   members: "—",                           roi: "tough",  cur: 3, opt: 2, brown: 58 },
 ];
 
 // ——— RENDER BAR CHART ———
@@ -219,8 +219,8 @@ function renderGauges() {
 function renderROI() {
   const grid = document.getElementById('roiGrid');
   roiData.forEach(d => {
-    const badgeClass = d.roi==='high' ? 'roi-high' : d.roi==='med' ? 'roi-med' : 'roi-low';
-    const badgeLabel = d.roi==='high' ? 'High ROI' : d.roi==='med' ? 'Medium ROI' : 'Hold Position';
+    const badgeClass = d.roi==='high' ? 'roi-high' : d.roi==='med' ? 'roi-med' : d.roi==='defend' ? 'roi-defend' : 'roi-tough';
+    const badgeLabel = d.roi==='high' ? 'High ROI' : d.roi==='med' ? 'Medium ROI' : d.roi==='defend' ? 'Defend Lead' : 'Tough Field';
     const card = document.createElement('div');
     card.className = 'roi-card';
     const rankClass = r => r===1?'rank-1':r===2?'rank-2':'rank-3';
@@ -250,6 +250,48 @@ function renderROI() {
   });
 }
 
+// ——— STATES TEAM ROSTER ———
+const statesRoster = {
+  "Saha":     ["Anatomy & Physiology", "Chemistry Lab", "Forensics"],
+  "Niru":     ["Anatomy & Physiology", "Designer Genes", "Remote Sensing"],
+  "Brayden":  ["Astronomy", "Chemistry Lab", "Codebusters", "Hovercraft"],
+  "Saanvi":   ["Astronomy", "Dynamic Planet"],
+  "Himaghna": ["Boomilever", "Circuit Lab", "Disease Detectives", "Dynamic Planet"],
+  "Shiven":   ["Boomilever", "Disease Detectives", "Experimental Design", "Machines"],
+  "Sai":      ["Bungee Drop", "Electric Vehicle", "Engineering CAD", "Experimental Design", "Robot Tour"],
+  "Anu":      ["Bungee Drop", "Electric Vehicle", "Entomology", "Experimental Design"],
+  "Sharvesh": ["Circuit Lab", "Codebusters", "Machines"],
+  "Gayathri": ["Codebusters", "Engineering CAD", "Rocks & Minerals"],
+  "Sudeepa":  ["Designer Genes", "Experimental Design", "Remote Sensing"],
+  "Rikin":    ["Entomology", "Helicopter", "Hovercraft"],
+  "Neha":     ["Forensics", "Rocks & Minerals"],
+  "Aahan":    ["Helicopter", "Water Quality"],
+  "Sathwika": ["Water Quality"],
+};
+
+// lookup roi for a given event
+function eventROI(eventName) {
+  const found = roiData.find(r => r.event === eventName);
+  return found ? found.roi : 'med';
+}
+
+function renderRoster() {
+  const grid = document.getElementById('rosterGrid');
+  Object.entries(statesRoster).forEach(([name, events]) => {
+    const card = document.createElement('div');
+    card.className = 'roster-card';
+    const tagsHTML = events.map(ev => {
+      const roi = eventROI(ev);
+      return `<div class="roster-event-tag roi-${roi}-tag">${ev}</div>`;
+    }).join('');
+    card.innerHTML = `
+      <div class="roster-name">${name}</div>
+      <div class="roster-events">${tagsHTML}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
 // ——— INTERSECTION OBSERVER for reveal animations ———
 function setupReveal() {
   const els = document.querySelectorAll('.reveal');
@@ -266,5 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderRankTable('optimalTable', 'opt');
   renderGauges();
   renderROI();
+  renderRoster();
   setupReveal();
 });
